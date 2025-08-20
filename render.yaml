@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: telegram-file-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: RENDER
+        value: "true"
+    healthCheckPath: /health
